@@ -14,12 +14,13 @@ services:
     ports: []
 
     environment:
-      TZ: America/New_York
+      TZ: America/New_Yorl
 
     volumes:
       # Caddy config file (MUST be a FILE, not a directory)
       - type: bind
-        source: ./Caddyfile
+        # Caddyfile (folder)/Caddyfile (file) rename this file to text when edition is needed.
+        source: /zettos/pool/1/teams/Docker/DATA/Docker/traefik/Caddy/Caddyfile/Caddyfile 
         target: /etc/caddy/Caddyfile
         read_only: true
 
