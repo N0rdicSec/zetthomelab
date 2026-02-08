@@ -1,0 +1,10 @@
+Caddy error
+
+Error response from daemon: failed to create task for container:
+failed to create shim task: OCI runtime create failed: runc create failed:
+unable to start container process: error during container init: 
+error mounting "/zettos/pool/1/teams/Docker/DATA/Docker/traefik/Caddy/Caddyfile" to rootfs at "/etc/caddy/Caddyfile": 
+create mountpoint for /etc/caddy/Caddyfile mount: cannot create subdirectories in 
+"/zettos/pool/1/docker/overlay2/ec53dafde483b1d0212e93857f5404c111f7321ca047f8b3d1a7a6bba0670c43/merged/etc/caddy/Caddyfile": 
+not a directory: unknown: Are you trying to mount a directory onto a file (or vice-versa)? Check if the specified host path exists 
+and is the expected type
