@@ -16,10 +16,11 @@ services:
       - TZ=America/New_York
 
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /This_NAS/Teams/Docker/traefik/dynamic:/dynamic:ro
-      - /This_NAS/Teams/Docker/traefik/certs:/certs:ro
-      - /This_NAS/Teams/Docker/traefik/data:/data
+      #   Not support on ZettLab for security reasons
+      #- /var/run/docker.sock:/var/run/docker.sock:ro
+      - /zettos/pool/1/teams/Docker/DATA/Docker/traefik/dynamic:/dynamic:ro
+      - /zettos/pool/1/teams/Docker/DATA/Docker/traefik/certs:/certs:ro
+      - /zettos/pool/1/teams/Docker/DATA/Docker/traefik/data:/data
 
     command:
       # -----------------------
@@ -47,9 +48,9 @@ services:
       # -----------------------
       # Providers
       # -----------------------
-      - --providers.docker=true
-      - --providers.docker.exposedbydefault=false
-      - --providers.docker.network=traefik-net
+      # - --providers.docker=true
+      # - --providers.docker.exposedbydefault=false
+      # - --providers.docker.network=traefik-net
 
       - --providers.file.directory=/dynamic
       - --providers.file.watch=true
@@ -73,8 +74,8 @@ services:
     labels:
       - traefik.enable=true
 
-      # Dashboard URL (hardcoded)
-      #- traefik.http.routers.traefik.rule=Host(`traefik.home`)
+      # Dashboard URL (hardcoded) - Dashboard connected via API to Caddy container
+      #- traefik.http.routers.traefik.rule=Host(`traefik.thor.home`)
       #- traefik.http.routers.traefik.entrypoints=websecure
       #- traefik.http.routers.traefik.tls=true
       #- traefik.http.routers.traefik.service=api@internal
