@@ -1,0 +1,88 @@
+services:
+  traefik:
+    image: traefik:latest
+    container_name: traefik_latest
+    restart: unless-stopped
+
+    security_opt:
+      - no-new-privileges:true
+
+    networks:
+      - traefik-net
+
+    ports: []
+
+    environment:
+      - TZ=America/Toronto
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /This_NAS/Teams/Docker/traefik/dynamic:/dynamic:ro
+      - /This_NAS/Teams/Docker/traefik/certs:/certs:ro
+      - /This_NAS/Teams/Docker/traefik/data:/data
+
+    command:
+      # -----------------------
+      # Global
+      # -----------------------
+      - --global.checknewversion=false
+      - --global.sendanonymoususage=false
+
+      # -----------------------
+      # Logging
+      # -----------------------
+      - --log.level=DEBUG
+      - --accesslog=true
+
+      # -----------------------
+      # EntryPoints
+      # -----------------------
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+
+      # Force HTTPS
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+
+      # -----------------------
+      # Providers
+      # -----------------------
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=traefik-net
+
+      - --providers.file.directory=/dynamic
+      - --providers.file.watch=true
+
+      # -----------------------
+      # Dashboard
+      # -----------------------
+      - --api=true
+      - --api.dashboard=true
+      
+      # Keep the API/Dashboard reachable for your dash-proxy over traefik-net
+      - --entrypoints.traefik.address=:8080
+
+      # Expose 8080 only to other containers on the same Docker network
+      # (NOT published to the NAS)
+    expose:
+      - "80"
+      - "443"
+      - "8080"      
+
+    labels:
+      - traefik.enable=true
+
+      # Dashboard URL (hardcoded)
+      #- traefik.http.routers.traefik.rule=Host(`traefik.home`)
+      #- traefik.http.routers.traefik.entrypoints=websecure
+      #- traefik.http.routers.traefik.tls=true
+      #- traefik.http.routers.traefik.service=api@internal
+      #- traefik.http.routers.traefik.middlewares=traefik-auth@file
+
+volumes:
+  traefik_data:
+
+networks:
+  traefik-net:
+    external: true
