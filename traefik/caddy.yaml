@@ -1,0 +1,45 @@
+name: caddy
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless-stopped
+
+    networks:
+      traefik-net: {}
+      macvlan:
+        ipv4_address: 192.168.x.x   # <-- change to your reserved IP
+
+    # macvlan container has its own LAN IP, so no host port publishing needed
+    ports: []
+
+    environment:
+      TZ: America/New_York
+
+    volumes:
+      # Caddy config file (MUST be a FILE, not a directory)
+      - type: bind
+        source: ./Caddyfile
+        target: /etc/caddy/Caddyfile
+        read_only: true
+
+      # Your wildcard certs
+      - type: bind
+        source: /zettos/pool/1/teams/Docker/DATA/Docker/traefik/Caddy/certs
+        target: /certs
+        read_only: true
+
+      # Persist Caddy state (cert cache, etc.) in your stack folder
+      - type: bind
+        source: /zettos/pool/1/teams/Docker/DATA/Docker/traefik/Caddy/data
+        target: /data
+
+      - type: bind
+        source: /zettos/pool/1/teams/Docker/DATA/Docker/traefik/Caddy/config
+        target: /config
+
+networks:
+  traefik-net:
+    external: true
+  macvlan:
+    external: true
