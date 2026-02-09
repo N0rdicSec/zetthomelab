@@ -66,6 +66,7 @@ traefik/
 │   ├── docker-compose.yml
 │   ├── dynamic/
 │   │   ├── tls.yml
+│   │   ├── dashboard.yml
 │   │   └── middlewares.yml
 │   └── certs/
 │       ├── lab.crt
@@ -91,9 +92,9 @@ All persistent data is stored using **bind mounts**, aligned with Zettlab’s na
 Your internal DNS (Pi-hole, router DNS, etc.) must point the following to **Caddy’s macvlan IP** (example: `192.168.x.60`):
 
 ```
-traefik.thor.home   → 192.168.x.60
-jellyfin.thor.home  → 192.168.x.60
-*.thor.home         → 192.168.x.60 (wildcard recommended)
+traefik.lab.home   → 192.168.x.x
+jellyfin.lab.home  → 192.168.x.x
+*.lab.home         → 192.168.x.x (wildcard recommended)
 ```
 
 ---
