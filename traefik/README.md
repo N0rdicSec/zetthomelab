@@ -73,7 +73,8 @@ traefik/
 │
 └── Caddy/
     ├── docker-compose.yml
-    ├── Caddyfile
+    ├── Caddyfile/
+    │   ├── Caddyfile
     ├── certs/
     │   ├── lab.crt
     │   └── lab.key
