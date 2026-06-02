@@ -75,7 +75,7 @@ services:
       - traefik.enable=true
 
       # Dashboard URL (hardcoded) - Dashboard connected via API to Caddy container
-      #- traefik.http.routers.traefik.rule=Host(`traefik.thor.home`)
+      #- traefik.http.routers.traefik.rule=Host(`traefik.lab.home`)
       #- traefik.http.routers.traefik.entrypoints=websecure
       #- traefik.http.routers.traefik.tls=true
       #- traefik.http.routers.traefik.service=api@internal
