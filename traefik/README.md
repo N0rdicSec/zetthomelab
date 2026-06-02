@@ -27,6 +27,12 @@ Traefik (bridge-only, internal)
 Docker services (traefik-net)
 ```
 
+---
+
+<img width="2897" height="889" alt="image" src="https://github.com/user-attachments/assets/b84d11fb-0b81-4947-bcc8-2b23ef4ce3ae" />
+
+---
+
 ### Why this design?
 
 * Zettlab reserves ports **80/443** on the host
@@ -83,6 +89,10 @@ traefik/
     └── config/
 ```
 
+<img width="1315" height="919" alt="image" src="https://github.com/user-attachments/assets/152186f4-0275-4562-b684-1c7c0ed41c90" />
+
+<img width="1245" height="1146" alt="image" src="https://github.com/user-attachments/assets/52aff7ea-5910-4a4e-99be-2ddb4e2b7804" />
+
 All persistent data is stored using **bind mounts**, aligned with Zettlab’s native app layout for easy backup and restore.
 
 ---
@@ -97,6 +107,8 @@ jellyfin.lab.home  → 192.168.x.x
 *.lab.home         → 192.168.x.x (wildcard recommended)
 ```
 
+<img width="1149" height="395" alt="image" src="https://github.com/user-attachments/assets/1028c34e-a0d4-4896-b1b9-dc34a2c8f380" />
+
 ---
 
 ## TLS / Certificates
@@ -104,6 +116,10 @@ jellyfin.lab.home  → 192.168.x.x
 * Uses a **self-signed wildcard certificate** (`*.lab.home`)
 * Same certificate is reused by **Caddy and Traefik**
 * Clients must trust the cert (import into OS trust store)
+
+<img width="1289" height="479" alt="image" src="https://github.com/user-attachments/assets/4d0bdcd6-f626-4431-92a0-a862a138d157" />
+
+<img width="1227" height="611" alt="image" src="https://github.com/user-attachments/assets/7effa446-a11a-409c-8f5a-b8c9e6c24347" />
 
 This avoids:
 
