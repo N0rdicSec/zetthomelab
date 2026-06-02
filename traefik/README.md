@@ -117,8 +117,11 @@ jellyfin.lab.home  → 192.168.x.x
 * Same certificate is reused by **Caddy and Traefik**
 * Clients must trust the cert (import into OS trust store)
 
-<img width="1289" height="479" alt="image" src="https://github.com/user-attachments/assets/4d0bdcd6-f626-4431-92a0-a862a138d157" />
+### Traefik Certs
+<img width="1217" height="592" alt="image" src="https://github.com/user-attachments/assets/8effb842-636b-4e4b-8fe6-66c216e95aee" />
 
+
+#### Caddy Certs
 <img width="1227" height="611" alt="image" src="https://github.com/user-attachments/assets/7effa446-a11a-409c-8f5a-b8c9e6c24347" />
 
 This avoids:
