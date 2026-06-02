@@ -164,6 +164,18 @@ No ports. No macvlan. No TLS config per app.
 
 ---
 
+### Traefik password
+
+The Traefik password is bcrypt encrypted in the files shown below.
+
+Use https://it-tools.tech/bcrypt to generate your password hash.
+
+<img width="1215" height="819" alt="image" src="https://github.com/user-attachments/assets/f425f5ba-3b86-439d-9c35-cbdffcd15e38" />
+
+<img width="1523" height="892" alt="image" src="https://github.com/user-attachments/assets/babf67f7-dfa2-40ca-ae58-f1c1417711ff" />
+
+---
+
 ## Why Not Expose Traefik Directly?
 
 | Option           | Outcome                                    |
